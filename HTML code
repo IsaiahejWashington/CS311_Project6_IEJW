@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Balance Sheet</title>
+        <style>
+          ul{
+              display: none;
+          }
+          li{
+              list-style-type: none;
+          }
+
+          .form-group{
+              display: flex;
+              align-items: center;
+              margin-bottom: 10px;
+          }
+
+        .form-group label{
+           width: 150px;
+           text-align: left;
+           margin-right: 10px;
+        }
+
+        .form-group input{
+           flex: 1;
+        } 
+        </style>
+</head>
+<body>
+
+ <!-- Header -->
+        <header>
+            <h1>Bellarmine Financials-Balance Sheet Calculator</h1>
+        </header>
+       
+<!--Main-->
+  <div class="Balance Sheet">
+    <section class="assets">
+        <h2>Current Assets</h2>
+        <button onclick="toggleList('myul');">Add Current Assets</button>
+        <ul  id="myul">
+            <div class = "form-group">
+            <label for "cash">Cash:</label> <input type="text" id="cash" name="cash">
+            </div>
+            <br>
+            <div class = "form-group">
+            <label for "inventory">Inventory:</label> <input type="text" id="inventory" name="inventory">
+            </div>
+            <br>
+            <div class = "form-group">
+            <label for "supplies">Supplies:</label> <input type="text" id="supplies" name="supplies">
+            </div>
+            <br>
+            <div class = "form-group">
+            <label for "temporaryInvestments1">Temporary Investments:</label> <input type="text" id="temporaryInvestments1" name="temporaryInvestments1">
+            </div>
+        </ul>
+   
+        <h3>Investment Property & Equipment</h3>
+           <button onclick="toggleList('myul1');">Add Investment Property & Equipment</button>
+           <ul id="myul1">
+             <div class = "form-group">
+             <label for "land">Land:</label> <input type="text" id="land" name="land">
+             </div>
+             <br>
+             <div class = "form-group">
+             <label for "buildingAndImprovements">Building and Improvments:</label> <input type="text" id="buildingAndImprovements" name="buildingAndImprovements">
+             </div>
+             <br>
+             <div class = "form-group">
+             <label for "equipment">Equipment:</label> <input type="text" id="equipment" name="equipment">
+             </div>
+             <br>
+             <div class = "form-group">
+             <label for "temporaryInvestments">Temporary Investments:</label> <input type="text" id="temporaryInvestments" name="temporaryInvestments">
+             </div>
+           </ul>
+      
+        <h3>Intangibles</h3>
+           <button onclick="toggleList('myul2');">Add Intangibles</button>
+           <ul id = "myul2">
+            <div class = "form-group">
+             <label for "tradeNames">Trade Names:</label> <input type="text" id="tradeNames" name="tradeNames">
+             </div>
+             <div class = "form-group">
+             <br>
+             </div>
+             <div class = "form-group">
+             <label for "goodwill">Goodwill:</label> <input type="text" id="goodwill" name="goodwill">
+             </div>
+           </ul>
+    </section>
+
+    <section class="liabilities">
+        <h4>Current Liabilities</h4>
+         <button onclick="toggleList('myul3');">Add Current Liabilities</button>
+         <ul id ="myul3">
+            <div class = "form-group">
+            <label for "accountsPayable">Accounts Payable:</label> <input type="text" id="accountsPayable" name="accountsPayable">
+            </div>
+            <br>
+            <div class = "form-group">
+            <label for "notesPayable">Notes Payable:</label> <input type="text" id="notesPayable" name="notesPayable">
+            </div>
+            <br>
+            <div class = "form-group">
+            <label for "interestPayable">Interest Payable:</label> <input type="text" id="interestPayable" name="interestPayable">
+            </div>
+            <br>
+            <div class = "form-group">
+            <label for "wagesPayable">Wages Payable:</label> <input type="text" id="wagesPayable" name="wagesPayable">
+            </div>
+            <br>
+            <div class = "form-group">
+            <label for "acccruedExpenses">Accrued Expenses:</label> <input type="text" id="acccruedExpenses" name="acccruedExpenses">
+            </div>
+         </ul>
+
+        <h5>Long-Term Liabilities</h5>
+         <button onclick="toggleList('myul4');">Add Current Long-Term Liabilities</button>
+         <ul id = "myul4">
+            <div class = "form-group">
+           <label for "notesPayable1">Notes Payable:</label> <input type="text" id="notesPayable1" name="notesPayable1">
+           </div>
+           <br>
+           <div class = "form-group">
+           <label for "bondsPayable">Bonds Payable:</label> <input type="text" id="bondsPayable" name="bondsPayable">
+           </div>
+        </ul>   
+     </section>
+
+     <section class= "position">
+        <h5> Total Position </h5>
+         <li>
+          <label for "totalAssets">Total Assets:<span id ="totalAssets">0.00</span> </label> 
+          <br>
+          <label for "totalLiabilities">Total Liabilities:<span id ="totalLiabilities">0.00</span> </label>
+          <br>
+          <label for "position">Total Position:<span id ="position">0.00</span> </label>
+        </li>
+
+        <button onclick= "totalAssets() + totalLiabilities() + position()">Calculate Position</button>
+    </section>
+
+<!--Footer-->
+   <footer>
+     <p>Bellarmine University 2024</p>
+   </footer>
+
+</body>
+</html>
+
+<script>
+
+    function totalAssets(){
+        const cash = parseFloat(document.getElementById("cash").value) || 0;
+        const inventory = parseFloat(document.getElementById("inventory").value) || 0;
+        const supplies = parseFloat(document.getElementById("supplies").value) || 0;
+        const temporaryInvestments = parseFloat(document.getElementById("temporaryInvestments").value) || 0;
+        const land = parseFloat(document.getElementById("land").value) || 0;
+        const buildingAndImprovements = parseFloat(document.getElementById("buildingAndImprovements").value) || 0;
+        const equipment = parseFloat(document.getElementById("equipment").value) || 0;
+        const temporaryInvestments1 = parseFloat(document.getElementById("temporaryInvestments1").value) || 0;
+        const tradeNames = parseFloat(document.getElementById("tradeNames").value) || 0;
+        const goodwill = parseFloat(document.getElementById("goodwill").value) || 0;
+
+        const totalAssets = cash + inventory + supplies + temporaryInvestments + land + buildingAndImprovements + equipment + temporaryInvestments1 + tradeNames + goodwill;
+
+        document.getElementById("totalAssets").textContent = totalAssets.toFixed(2);
+
+        
+    }//end totalAssets
+  
+
+    function totalLiabilities(){
+        const accountsPayable = parseFloat(document.getElementById("accountsPayable").value) || 0;
+        const notesPayable = parseFloat(document.getElementById("notesPayable").value) || 0;
+        const interestPayable = parseFloat(document.getElementById("interestPayable").value) || 0;
+        const wagesPayable = parseFloat(document.getElementById("wagesPayable").value) || 0;
+        const acccruedExpenses = parseFloat(document.getElementById("acccruedExpenses").value) || 0;
+        const notesPayable1 = parseFloat(document.getElementById("notesPayable1").value) || 0;
+        const bondsPayable = parseFloat(document.getElementById("bondsPayable").value) || 0;
+
+        const totalLiabilities = accountsPayable + notesPayable + interestPayable + wagesPayable + acccruedExpenses + notesPayable1 + bondsPayable;
+
+        document.getElementById("totalLiabilities").textContent = totalLiabilities.toFixed(2);
+
+        
+    }//end totalLiabilities
+
+    function position(){
+       const totalAssets = parseFloat(document.getElementById("totalAssets").textContent) || 0;
+       const totalLiabilities = parseFloat(document.getElementById("totalLiabilities").textContent) || 0;
+
+       const position = totalAssets - totalLiabilities;
+
+       document.getElementById("position").textContent = position.toFixed(2);
+       
+
+    } //end position
+
+   function toggleList(listId) {
+       const ul = document.getElementById(listId);
+       if (ul.style.display == "none" || ul.style.display === ""){
+           ul.style.display = "block";
+       }
+       else{
+           ul.style.display = "none";
+       }
+   }
+
+  
+
+  
+</script>
+
+<style>
+body
+{
+	font-family; Arial, sans-serif;
+	margin: 0;
+	padding: 20px;
+	background-color: PeachPuff
+}
+
+.balance-sheet {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+h2 {
+  border-bottom: 2px solid #F0FFFF;
+  padding-bottom: 5px;
+  color: #00000;
+  font-size: 40px;
+}
+
+header {
+    background-color: #8B0000;
+    color: black;
+    text-align: left;
+    padding: 1px 0;
+}
+
+footer {
+    background-color: #8B0000;
+    color: black;
+    text-align: left;
+    padding: 1px 0;
+}
+
+</style>
